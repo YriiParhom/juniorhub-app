@@ -1,0 +1,24 @@
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  data:
+    r2dbc:
+      repositories:
+        enabled: true
+  rsocket:
+    server:
+      port: 8080
+  flyway:
+    enabled: true
+    password: postgres
+    user: postgres
+    locations: classpath:db/migration
+    url: jdbc:postgresql://localhost:5432/postgres
