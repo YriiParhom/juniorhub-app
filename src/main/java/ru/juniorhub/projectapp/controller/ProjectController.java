@@ -3,6 +3,7 @@ package ru.juniorhub.projectapp.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import ru.juniorhub.projectapp.model.Project;
 import ru.juniorhub.projectapp.sevice.ProjectService;
@@ -28,20 +29,20 @@ public class ProjectController {
 
     @GetMapping("/find-by-name")
     @ResponseStatus(HttpStatus.FOUND)
-    public Mono<Project> findProjectByName(@RequestParam String name) {
+    public Flux<Project> findProjectByName(@RequestParam String name) {
         return projectService.findProjectByName(name);
     }
 
     @GetMapping("/find-by-description")
     @ResponseStatus(HttpStatus.FOUND)
-    public Mono<Project> findProjectByDescription(@RequestParam String description) {
+    public Flux<Project> findProjectByDescription(@RequestParam String description) {
         return projectService.findProjectByDescription(description);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/update/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<Project> update() {
-        return null; //TODO
+    public Mono<Project> update(@PathVariable("id") Long id, @RequestBody Project project) {
+        return projectService.update(id, project);
     }
 
     @DeleteMapping("/{id}")

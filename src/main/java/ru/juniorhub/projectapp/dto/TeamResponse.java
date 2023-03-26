@@ -5,8 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+
 
 @Data
 @NoArgsConstructor
@@ -16,8 +15,8 @@ public class TeamResponse {
     private Long id;
     private String teamName;
     private String teamDescription;
-    private Byte logo;
+    private byte[] logo;
     private LocalDate creationDate;
     private Integer totalNumberOfMembers;
-    private Set<UserResponse> members = new HashSet<>();
+    private Long projectId;
 }

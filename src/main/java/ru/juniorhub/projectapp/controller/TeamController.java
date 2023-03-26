@@ -35,14 +35,14 @@ public class TeamController {
 
     @GetMapping("/find-by-description")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<Team> findByDescription(String description) {
+    public Mono<Team> findByDescription(@RequestParam String description) {
         return teamService.findTeamByDescription(description);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/update/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<Team> updateTeam() {
-        return null; //TODO
+    public Mono<Team> updateTeam(@PathVariable("id") Long id, @RequestBody Team team) {
+        return teamService.updateTeam(id, team);
     }
 
     @DeleteMapping("/{id}")

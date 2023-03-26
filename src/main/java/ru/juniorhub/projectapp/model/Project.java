@@ -6,9 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.LocalDate;
 
 @Data
 @Table
@@ -16,24 +14,12 @@ import java.util.Set;
 @AllArgsConstructor
 public class Project {
 
+    @Id
     private Long id;
     private String projectName;
     private String projectDescription;
     private byte[] logo;
-    private Set<Long> teamId = new HashSet<>();
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
-    public Project(
-            Long id,
-            String projectName,
-            Set<Long> teamId,
-            Date startDate,
-            Date endDate) {
-        this.id = id;
-        this.projectName = projectName;
-        this.teamId = teamId;
-        this.startDate = startDate;
-        this.endDate = endDate;
-    }
 }

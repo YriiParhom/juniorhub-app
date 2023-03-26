@@ -12,11 +12,13 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class Team {
 
+    @Id
     private Long id;
-    private  String teamName;
-    private  String teamDescription;
-    private  byte[] logo;
-    private  LocalDate creationDate;
-    private  int totalNumberOfMembers;
+    private String teamName;
+    private String teamDescription;
+    private byte[] logo;
+    private LocalDate creationDate;
+    private Integer totalNumberOfMembers;
+    private Long projectId;
 
 }

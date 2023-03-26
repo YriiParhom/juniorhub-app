@@ -1,6 +1,7 @@
 package ru.juniorhub.projectapp.model;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Data
@@ -9,7 +10,8 @@ import org.springframework.data.relational.core.mapping.Table;
 @AllArgsConstructor
 public class Users {
 
-    private  Long id;
+    @Id
+    private Long id;
     private String username;
     private String phoneNumber;
     private Long teamId;

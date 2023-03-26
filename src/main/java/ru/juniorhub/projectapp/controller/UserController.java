@@ -9,6 +9,7 @@ import ru.juniorhub.projectapp.dto.UserResponse;
 import ru.juniorhub.projectapp.model.Users;
 import ru.juniorhub.projectapp.sevice.UserService;
 
+
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
@@ -24,7 +25,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<Users> findUserById(@PathVariable("id") Long id) {
+    public Mono<UserResponse> findUserById(@PathVariable("id") Long id) {
         return userService.findById(id);
     }
 
@@ -34,16 +35,16 @@ public class UserController {
         return userService.findByName(username);
     }
 
-    @DeleteMapping("/delete")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Mono<Void> deleteUser(@RequestBody Users user) {
-        return userService.delete(user);
+    @DeleteMapping("/delete/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<Void> deleteUser(@PathVariable("id") Long id) {
+        return userService.delete(id);
     }
 
-    @PutMapping("/update/{username}")
+    @PutMapping("/update/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<Users> updateUser(@PathVariable("username") String phoneNumber,
+    public Mono<Users> updateUser(@PathVariable("id") Long id,
                                   @RequestBody Users user) {
-        return userService.update(user, user.getId());
+        return userService.update(id, user);
     }
 }
